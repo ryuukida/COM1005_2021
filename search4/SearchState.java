@@ -21,14 +21,12 @@ public abstract class SearchState {
   /**
   * accessor for local cost
   */
-  public int getLocalCost(){
-    return localCost;
-  }
+  abstract public int getLocalCost();
 
   // A*
-  public int getestRemCost(){
-    return estRemCost;
-  }
+  // public int getestRemCost(){
+  //   return estRemCost;
+  // }
 
 
   // must implement goalPredicate, getSuccessors, sameState, toString
