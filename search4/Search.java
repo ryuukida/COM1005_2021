@@ -111,7 +111,7 @@ public abstract class Search {
     for (SearchNode snode: successorNodes){
       snode.setGlobalCost(currentNode.getGlobalCost()+ snode.getLocalCost());
       snode.setParent(currentNode);
-      snode.setestTotalCost(snode.getGlobalCost()+snode.getestRemCost()); //A*
+      //snode.setestTotalCost(snode.getGlobalCost()+snode.getestRemCost()); //A*
     }
 
 	  vetSuccessors(); //filter out unwanted - DP check
