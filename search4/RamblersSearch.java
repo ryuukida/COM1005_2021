@@ -2,7 +2,6 @@ import java.util.*;
 
 public class RamblersSearch extends Search {
     private TerrainMap tmap;
-    private RamblersState initState;
     private RamblersState goalState;
 
     public TerrainMap getTmap() {
@@ -13,8 +12,7 @@ public class RamblersSearch extends Search {
         return goalState;
     }
 
-    public RamblersSearch(TerrainMap tmap, RamblersState initState, RamblersState goalState) {
-        this.initState = initState;
+    public RamblersSearch(TerrainMap tmap, RamblersState goalState) {
         this.goalState = goalState;
         this.tmap = tmap;
     }
