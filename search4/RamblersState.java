@@ -5,6 +5,10 @@ public class RamblersState extends SearchState{
     private int xCoord;
     private int yCoord;
 
+    public RamblersState(Coords initCoord) {
+        this.xCoord = initCoord.getx();
+        this.yCoord = initCoord.gety();
+    }
     public TerrainState(Coords coords) {
         xCoord = coords.getx();
         yCoord = coords.gety();
