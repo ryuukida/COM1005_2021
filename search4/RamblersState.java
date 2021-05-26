@@ -13,17 +13,18 @@ public class RamblersState extends SearchState{
 
     public boolean goalPredicate(Search searcher) {
         RamblersSearch rsearcher = (RamblersSearch)searcher;
-        RamblersState goalState = searcher.getGoalState();
-        return (goalState.xCoord.getx() == xCoord.getx() && goalState.gety() == yCoord.gety());
+        RamblersState goalState = (RamblersState) rsearcher.getGoalState();
+        return (goalState.getx() == xCoord && goalState.gety() == yCoord);
 
     }
 
     public ArrayList<SearchState> getSuccessors(Search searcher) {
         RamblersSearch rsearcher = (RamblersSearch)searcher;
-        int [][] tmap = rsearcher.getTmap();
+        TerrainMap terrainMap = rsearcher.getTmap();
+        int [][] tmap = terrainMap.getTmap();
         ArrayList<SearchState> sList = new ArrayList<>();
-        int x = xCoord.getx();
-        int y = yCoord.gety();
+        int x = xCoord;
+        int y = yCoord;
         // Add all potential successor states relative to current state in
         // array list
         ArrayList<Coords> sCoords = new ArrayList<>();
@@ -39,27 +40,29 @@ public class RamblersState extends SearchState{
         sCoords.add(new Coords(x - 1, y + 1)); 
         
         // Remove any coords that do not fall within map
-        vetCoords(sCoords);
+        vetCoords(sCoords, terrainMap);
 
         // Add all the successor states to sList
-        iterator<Coords> iterator = sCoords.iterator();
+        Iterator<Coords> iterator = sCoords.iterator();
         while (iterator.hasNext()) {
-            Coord coord = iterator.next();
+            Coords coord = iterator.next();
             sList.add(new RamblersState(coord, tmap[coord.getx()][coord.gety()]));  
-        }  
+        } 
+
+        return sList;
     }
 
     /**
      * Helper method to return array list of succesor coords that are within the map
      */
-    private ArrayList<Coords> vetCoords(ArrayList<Coords> sCoords) {
+    private ArrayList<Coords> vetCoords(ArrayList<Coords> sCoords, TerrainMap terrainMap) {
         ListIterator<Coords> iterator = sCoords.listIterator();
         while (iterator.hasNext()) {
             int index = iterator.nextIndex();
-            Coord coord = iterator.next();
+            Coords coord = iterator.next();
             int sX = coord.getx();
             int sY = coord.gety();
-            if ( (sX + 1 > tmap.width || sX - 1 < tmap.width) || (sY + 1 > tmap.height || sY - 1 < tmap.height) ) {
+            if ( (sX + 1 > terrainMap.getWidth() || sX - 1 < terrainMap.getWidth()) || (sY + 1 > terrainMap.getHeight() || sY - 1 < terrainMap.getHeight()) ) {
                 iterator.remove();
             }
             iterator.previous();
@@ -70,6 +73,14 @@ public class RamblersState extends SearchState{
 
     public boolean sameState(SearchState s2) {
         RamblersState state1 = (RamblersState)s2;
-        return (state1.xCoord.getx() == xCoord.getx() && state1.xCoord.gety());
+        return (state1.getx() == xCoord && state1.gety() == yCoord);
+    }
+
+    public int getx() {
+        return xCoord;
+    }
+
+    public int gety() {
+        return yCoord;
     }
 }
