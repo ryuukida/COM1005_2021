@@ -37,16 +37,6 @@ public  class SearchNode {
   }
 
   /**
-   * contructor for BRANCH AND BOUND
-   * @param s a search state
-   * @param lc local cost of getting to this node from its predecessor
-   */
-  public SearchNode(SearchState s, int lc) {
-    state= (SearchState) s;
-    localCost=lc;
-  }
-
-  /**
    * accessor for state
    */
   public SearchState get_State() {
@@ -155,8 +145,7 @@ public  class SearchNode {
     ArrayList<SearchNode> nlis= new ArrayList<SearchNode>();
 
     for (SearchState suc_state:slis){
-         SearchNode n = new SearchNode(suc_state, suc_state.getLocalCost(searcher));
-         //SearchNode n = new SearchNode(suc_state, suc_state.getLocalCost(), suc_state.getestRemCost());
+         SearchNode n = new SearchNode(suc_state, suc_state.getLocalCost(), suc_state.getestRemCost());
       nlis.add(n);
     }
     return nlis;
