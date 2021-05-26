@@ -42,5 +42,4 @@ public class RamblersState extends SearchState{
         RamblersState state1 = (RamblersState)s2;
         return (state1.xCoord.getx() == xCoord.getx() && state1.xCoord.gety());
     }
-
 }
