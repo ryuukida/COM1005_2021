@@ -10,10 +10,6 @@ public class RamblersState extends SearchState{
         this.yCoord = coord.gety();
         super.localCost = lc;
     }
-    public TerrainState(Coords coords) {
-        xCoord = coords.getx();
-        yCoord = coords.gety();
-    }
 
     public boolean goalPredicate(Search searcher) {
         RamblersSearch rsearcher = (RamblersSearch)searcher;
