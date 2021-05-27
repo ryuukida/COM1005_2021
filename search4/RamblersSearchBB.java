@@ -6,10 +6,11 @@ public class RamblersSearchBB {
 		int goalY = 10;
 
 		TerrainMap tmap = new TerrainMap("tmc.pgm");
-		SearchState initState = (SearchState) new RamblersState(new Coord(initX, initY));
-		SearchState goalState = (SearchState) new RamblersState(new Coord(goalX, goalY));
-		RamblersSearch searcher = new RamblersSearch(tmap, goalState);
+		SearchState initState = (SearchState) new RamblersState(new Coords(initX, initY), 0);
+		SearchState goalState = (SearchState) new RamblersState(new Coords(goalX, goalY), 0);
+		RamblersSearch searcher = new RamblersSearch(tmap, (RamblersState)goalState);
 
 		String res = searcher.runSearch(initState, "breadthFirst");
+		System.out.println(res);
 	}
 }
