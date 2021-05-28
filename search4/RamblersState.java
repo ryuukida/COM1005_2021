@@ -40,38 +40,43 @@ public class RamblersState extends SearchState{
         // array list
         ArrayList<Coords> sCoords = new ArrayList<>();
         // Horizontal
-        sCoords.add(new Coords(x - 1, y));
-        sCoords.add(new Coords(x + 1, y)); 
-        sCoords.add(new Coords(x, y - 1)); 
-        sCoords.add(new Coords(x, y + 1)); 
+        System.out.println("x: " + x + ", y: " + y);
+        sCoords.add(new Coords(y, x - 1));
+        sCoords.add(new Coords(y, x + 1)); 
+        sCoords.add(new Coords(y - 1, x)); 
+        sCoords.add(new Coords(y + 1, x)); 
         // Vertical
-        sCoords.add(new Coords(x - 1, y - 1)); 
-        sCoords.add(new Coords(x + 1, y + 1)); 
-        sCoords.add(new Coords(x + 1, y - 1)); 
-        sCoords.add(new Coords(x - 1, y + 1)); 
-        // System.out.println("Unvetted Successor coords: ");
-        // for (Coords state : sCoords) {
-        //     System.out.println(state.getx() + ", " + state.gety());
-        // } 
+        sCoords.add(new Coords(y - 1, x - 1)); 
+        sCoords.add(new Coords(y + 1, x + 1)); 
+        sCoords.add(new Coords(y - 1, x + 1)); 
+        sCoords.add(new Coords(y + 1, x - 1)); 
+
+        System.out.println("Unvetted Successor coords: ");
+        for (Coords state : sCoords) {
+            System.out.println(state.getx() + ", " + state.gety());
+        } 
         // Remove any coords that do not fall within map
         vetCoords(sCoords, terrainMap);
-        // System.out.println("Vetted Successor coords: ");
-        // for (Coords state : sCoords) {
-        //     System.out.println(state.getx() + ", " + state.gety());
-        // } 
+
+        System.out.println("Vetted Successor coords: ");
+        for (Coords state : sCoords) {
+            System.out.println(state.getx() + ", " + state.gety());
+        } 
         // Add all the successor states to sList
         Iterator<Coords> iterator = sCoords.iterator();
         while (iterator.hasNext()) {
             Coords coord = iterator.next();
             sList.add(new RamblersState(coord, tmap[coord.getx()][coord.gety()]));  
         }
-        // System.out.println("Successor states: ");
-        // for (SearchState s : sList) {
+
+        System.out.println("Successor states: ");
+        for (SearchState s : sList) {
             
-        //     RamblersState state = (RamblersState)s;
-        //     System.out.println(state.getx() + ", " + state.gety());
-        // } 
+            RamblersState state = (RamblersState)s;
+            System.out.println(state.getx() + ", " + state.gety());
+        } 
         return sList;
+        
     }
 
     /**
@@ -81,15 +86,11 @@ public class RamblersState extends SearchState{
         ListIterator<Coords> iterator = sCoords.listIterator();
         while (iterator.hasNext()) {
             int index = iterator.nextIndex();
-            // System.out.println("Index: " + index);
             Coords coord = iterator.next();
             int sX = coord.getx();
             int sY = coord.gety();
-            if ( (sX + 1 > terrainMap.getWidth() || sX - 1 < 0) || (sY + 1 > terrainMap.getHeight() || sY - 1 < 0) ) {
-                // System.out.println("Removing " + coord.getx() + ", " + coord.gety());
+            if ( (sX > terrainMap.getWidth() - 1 || sX < 0) || (sY > terrainMap.getDepth() - 1 || sY < 0) ) {
                 iterator.remove();
-                if (iterator.hasPrevious())
-                    iterator.previous();
             }
             
         }
