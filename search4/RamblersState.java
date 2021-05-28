@@ -4,10 +4,20 @@ public class RamblersState extends SearchState{
     
     private int xCoord;
     private int yCoord;
+    private Coords coordinate;
+
+    /**
+     * Method to return Coords object stored in state
+     * @return coordinate Coords object of this state
+     */
+    public Coords getCoord() {
+        return coordinate;
+    }
 
     public RamblersState(Coords coord, int lc) {
-        this.xCoord = coord.getx();
-        this.yCoord = coord.gety();
+        xCoord = coord.getx();
+        yCoord = coord.gety();
+        coordinate = coord;
         super.localCost = lc;
     }
 
