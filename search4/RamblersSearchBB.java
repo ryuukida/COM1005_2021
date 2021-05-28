@@ -1,16 +1,16 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
 
 public class RamblersSearchBB {
 	public static void main(String [] args) {
-		int initX = 0;
-		int initY = 0;
-		int goalX = 10;
-		int goalY = 10;
+		int initX = 4;
+		int initY = 6;
+		int goalX = 13;
+		int goalY = 15;
 
 		TerrainMap tmap = new TerrainMap("tmc.pgm");
-		SearchState initState = (SearchState) new RamblersState(new Coords(initX, initY), 0);
-		SearchState goalState = (SearchState) new RamblersState(new Coords(goalX, goalY), 0);
+		SearchState initState = (SearchState) new RamblersState(new Coords(initY, initX), 0);
+		SearchState goalState = (SearchState) new RamblersState(new Coords(goalY, goalX), 0);
 		RamblersSearch searcher = new RamblersSearch(tmap, (RamblersState)goalState);
 
 		String res = searcher.runSearch(initState, "breadthFirst");
@@ -24,6 +24,10 @@ public class RamblersSearchBB {
 		System.out.println(res);
 
 		tmap.showPath(pathCoords);
+		String filePath = "path.pgm";
+		File pathFilename = new File(filePath);
+		if (pathFilename.exists())
+			pathFilename.delete();
 		tmap.writeTMap("path.pgm");
 	}
 
