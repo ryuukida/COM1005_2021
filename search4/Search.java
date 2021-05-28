@@ -151,6 +151,12 @@ public abstract class Search {
       }
     }
     successorNodes = vslis;
+    // System.out.println("Vetted successor nodes");
+    // for (SearchNode n : vslis) {
+    //   System.out.println(n);
+    // }
+    // System.out.println();
+    // RamblersState s = (RamblersState)currentNode.get_State();
   }
 
   //onClosed - is the state for a node the same as one on closed?
