@@ -29,7 +29,7 @@ public class RamblersState extends SearchState{
     }
 
     public ArrayList<SearchState> getSuccessors(Search searcher) {
-        System.out.println("Getting successors");
+        // System.out.println("Getting successors");
         RamblersSearch rsearcher = (RamblersSearch)searcher;
         TerrainMap terrainMap = rsearcher.getTmap();
         int [][] tmap = terrainMap.getTmap();
@@ -40,7 +40,7 @@ public class RamblersState extends SearchState{
         // array list
         ArrayList<Coords> sCoords = new ArrayList<>();
         // Horizontal
-        System.out.println("x: " + x + ", y: " + y);
+        // System.out.println("x: " + x + ", y: " + y);
         sCoords.add(new Coords(y, x - 1));
         sCoords.add(new Coords(y, x + 1)); 
         sCoords.add(new Coords(y - 1, x)); 
@@ -51,17 +51,17 @@ public class RamblersState extends SearchState{
         sCoords.add(new Coords(y - 1, x + 1)); 
         sCoords.add(new Coords(y + 1, x - 1)); 
 
-        System.out.println("Unvetted Successor coords: ");
-        for (Coords state : sCoords) {
-            System.out.println(state.getx() + ", " + state.gety());
-        } 
+        // System.out.println("Unvetted Successor coords: ");
+        // for (Coords state : sCoords) {
+        //     System.out.println(state.getx() + ", " + state.gety());
+        // } 
         // Remove any coords that do not fall within map
         vetCoords(sCoords, terrainMap);
 
-        System.out.println("Vetted Successor coords: ");
-        for (Coords state : sCoords) {
-            System.out.println(state.getx() + ", " + state.gety());
-        } 
+        // System.out.println("Vetted Successor coords: ");
+        // for (Coords state : sCoords) {
+        //     System.out.println(state.getx() + ", " + state.gety());
+        // } 
         // Add all the successor states to sList
         Iterator<Coords> iterator = sCoords.iterator();
         while (iterator.hasNext()) {
@@ -74,12 +74,12 @@ public class RamblersState extends SearchState{
             sList.add(new RamblersState(coord, cost));  
         }
 
-        System.out.println("Successor states: ");
-        for (SearchState s : sList) {
+        // System.out.println("Successor states: ");
+        // for (SearchState s : sList) {
             
-            RamblersState state = (RamblersState)s;
-            System.out.println(state.getx() + ", " + state.gety());
-        } 
+        //     RamblersState state = (RamblersState)s;
+        //     System.out.println(state.getx() + ", " + state.gety());
+        // } 
         return sList;
         
     }

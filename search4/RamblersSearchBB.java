@@ -3,17 +3,17 @@ import java.io.File;
 
 public class RamblersSearchBB {
 	public static void main(String [] args) {
-		int initX = 4;
-		int initY = 6;
-		int goalX = 32;
-		int goalY = 20;
+		int initX = 45;
+		int initY = 60;
+		int goalX = 170;
+		int goalY = 125;
 
 		TerrainMap tmap = new TerrainMap("diablo.pgm");
 		SearchState initState = (SearchState) new RamblersState(new Coords(initY, initX), 0);
 		SearchState goalState = (SearchState) new RamblersState(new Coords(goalY, goalX), 0);
 		RamblersSearch searcher = new RamblersSearch(tmap, (RamblersState)goalState);
 
-		String res = searcher.runSearch(initState, "breadthFirst");
+		float res = searcher.runSearchE(initState, "breadthFirst");
 		// Get list of nodes/coords that make up the path for the solution
 		SearchNode n = searcher.currentNode;
 		ArrayList<Coords> pathCoords = getCoordPathList(n);
