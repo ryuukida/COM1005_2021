@@ -3,10 +3,10 @@ import java.io.File;
 
 public class RamblersSearchAstart {
 	public static void main(String [] args) {
-		int initX = 45;
-		int initY = 60;
-		int goalX = 170;
-		int goalY = 125;
+		int initX = 0;
+		int initY = 0;
+		int goalX = 248;
+		int goalY = 250;
 
 		TerrainMap tmap = new TerrainMap("diablo.pgm");
 		SearchState goalState = (SearchState) new RamblersState(new Coords(goalY, goalX), 0, 0);

@@ -100,7 +100,7 @@ public class RamblersState extends SearchState{
             Coords coord = iterator.next();
             int sX = coord.getx();
             int sY = coord.gety();
-            if ( (sX > terrainMap.getWidth() - 1 || sX < 0) || (sY > terrainMap.getDepth() - 1 || sY < 0) ) {
+            if ( (sY > terrainMap.getWidth() - 1 || sY < 0) || (sX > terrainMap.getDepth() - 1 || sX < 0) ) {
                 iterator.remove();
             }
             

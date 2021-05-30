@@ -94,8 +94,12 @@ public class RamblersState extends SearchState{
             Coords coord = iterator.next();
             int sX = coord.getx();
             int sY = coord.gety();
-            if ( (sX > terrainMap.getWidth() - 1 || sX < 0) || (sY > terrainMap.getDepth() - 1 || sY < 0) ) {
+            System.out.println("Terrain w: " + terrainMap.getWidth() + "  Terrain d: " + terrainMap.getDepth());
+            System.out.println("sX: " + sX + "sY: " + sY);
+            if ( (sY > terrainMap.getWidth() - 1 || sY < 0) || (sX > terrainMap.getDepth() - 1 || sX < 0) ) {
                 iterator.remove();
+
+                // System.out.println("Removing\n" + sX + ", " + sY);
             }
             
         }
