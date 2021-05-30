@@ -5,10 +5,10 @@ public class RamblersSearchBB {
 	public static void main(String [] args) {
 		int initX = 4;
 		int initY = 6;
-		int goalX = 13;
-		int goalY = 15;
+		int goalX = 32;
+		int goalY = 20;
 
-		TerrainMap tmap = new TerrainMap("tmc.pgm");
+		TerrainMap tmap = new TerrainMap("diablo.pgm");
 		SearchState initState = (SearchState) new RamblersState(new Coords(initY, initX), 0);
 		SearchState goalState = (SearchState) new RamblersState(new Coords(goalY, goalX), 0);
 		RamblersSearch searcher = new RamblersSearch(tmap, (RamblersState)goalState);

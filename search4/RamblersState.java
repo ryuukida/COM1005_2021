@@ -66,7 +66,12 @@ public class RamblersState extends SearchState{
         Iterator<Coords> iterator = sCoords.iterator();
         while (iterator.hasNext()) {
             Coords coord = iterator.next();
-            sList.add(new RamblersState(coord, tmap[coord.getx()][coord.gety()]));  
+            int cost = 0;
+            if (tmap[coord.getx()][coord.gety()] <= tmap[coordinate.getx()][coordinate.gety()])
+                cost = 1;
+            else
+                cost = 1 + (tmap[coord.getx()][coord.gety()] - tmap[coordinate.getx()][coordinate.gety()]);
+            sList.add(new RamblersState(coord, cost));  
         }
 
         System.out.println("Successor states: ");
